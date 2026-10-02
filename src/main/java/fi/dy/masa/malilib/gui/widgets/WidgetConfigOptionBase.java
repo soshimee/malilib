@@ -13,6 +13,7 @@ import fi.dy.masa.malilib.gui.wrappers.TextFieldWrapper;
 import fi.dy.masa.malilib.render.GuiContext;
 import fi.dy.masa.malilib.util.KeyCodes;
 import fi.dy.masa.malilib.util.StringUtils;
+import net.minecraft.client.input.PreeditEvent;
 
 public abstract class WidgetConfigOptionBase<TYPE> extends WidgetListEntryBase<TYPE>
 {
@@ -129,6 +130,12 @@ public abstract class WidgetConfigOptionBase<TYPE> extends WidgetListEntryBase<T
         }
 
         return super.onCharTypedImpl(input);
+    }
+
+    @Override
+    protected boolean onPreeditUpdatedImpl(PreeditEvent event)
+    {
+        return this.textField != null && this.textField.isFocused() && this.textField.textField().preeditUpdated(event);
     }
 
     @Override

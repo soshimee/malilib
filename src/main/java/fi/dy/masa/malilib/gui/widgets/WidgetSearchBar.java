@@ -8,6 +8,7 @@ import fi.dy.masa.malilib.util.KeyCodes;
 import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.input.PreeditEvent;
 
 public class WidgetSearchBar extends WidgetBase
 {
@@ -116,6 +117,12 @@ public class WidgetSearchBar extends WidgetBase
         }
 
         return false;
+    }
+
+    @Override
+    protected boolean onPreeditUpdatedImpl(PreeditEvent event)
+    {
+        return this.searchOpen && this.searchBox.isFocused() && this.searchBox.preeditUpdated(event);
     }
 
     @Override

@@ -9,6 +9,7 @@ import fi.dy.masa.malilib.gui.widgets.WidgetListBase;
 import fi.dy.masa.malilib.gui.widgets.WidgetListEntryBase;
 import fi.dy.masa.malilib.render.GuiContext;
 import fi.dy.masa.malilib.util.KeyCodes;
+import net.minecraft.client.input.PreeditEvent;
 
 public abstract class GuiListBase<TYPE, WIDGET extends WidgetListEntryBase<TYPE>, WIDGETLIST extends WidgetListBase<TYPE, WIDGET>> extends GuiBase
 {
@@ -154,6 +155,17 @@ public abstract class GuiListBase<TYPE, WIDGET extends WidgetListEntryBase<TYPE>
         }
 
         return super.onCharTyped(input);
+    }
+
+    @Override
+    public boolean preeditUpdated(PreeditEvent event)
+    {
+        if (super.preeditUpdated(event))
+        {
+            return true;
+        }
+
+        return this.getListWidget() != null && this.getListWidget().preeditUpdated(event);
     }
 
     @Override

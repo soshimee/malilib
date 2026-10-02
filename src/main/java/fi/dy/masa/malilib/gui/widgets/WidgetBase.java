@@ -8,6 +8,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.input.PreeditEvent;
 
 public abstract class WidgetBase
 {
@@ -159,6 +160,16 @@ public abstract class WidgetBase
     }
 
     protected boolean onCharTypedImpl(CharacterEvent input)
+    {
+        return false;
+    }
+
+    public boolean onPreeditUpdated(PreeditEvent event)
+    {
+        return this.onPreeditUpdatedImpl(event);
+    }
+
+    protected boolean onPreeditUpdatedImpl(PreeditEvent event)
     {
         return false;
     }
